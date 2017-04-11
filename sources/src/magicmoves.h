@@ -81,6 +81,9 @@ extern const U64 magicmoves_b_magics[64];
 extern const U64 magicmoves_b_mask[64];
 extern const unsigned int magicmoves_b_shift[64];
 extern const unsigned int magicmoves_r_shift[64];
+U64 initmagicmoves_occ(const int*, const int, const U64);
+U64 initmagicmoves_Rmoves(const int, const U64);
+U64 initmagicmoves_Bmoves(const int, const U64);
 
   #define MINIMAL_B_BITS_SHIFT(square) 55
   #define MINIMAL_R_BITS_SHIFT(square) 52
