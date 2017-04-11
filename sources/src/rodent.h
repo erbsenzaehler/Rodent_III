@@ -59,9 +59,9 @@ enum eSquare {
 };
 
 #define PHA_MG Q
-#define DEF_MG K 
+#define DEF_MG K
 #define PHA_EG P
-#define DEF_EG R 
+#define DEF_EG R
 
 #define MAX_PLY         64
 #define MAX_MOVES       256
@@ -78,44 +78,44 @@ enum eSquare {
     typedef unsigned long long U64;
 #endif
 
-#define RANK_1_BB       (U64)0x00000000000000FF
-#define RANK_2_BB       (U64)0x000000000000FF00
-#define RANK_3_BB       (U64)0x0000000000FF0000
-#define RANK_4_BB       (U64)0x00000000FF000000
-#define RANK_5_BB       (U64)0x000000FF00000000
-#define RANK_6_BB       (U64)0x0000FF0000000000
-#define RANK_7_BB       (U64)0x00FF000000000000
-#define RANK_8_BB       (U64)0xFF00000000000000
+#define RANK_1_BB       0x00000000000000FFull
+#define RANK_2_BB       0x000000000000FF00ull
+#define RANK_3_BB       0x0000000000FF0000ull
+#define RANK_4_BB       0x00000000FF000000ull
+#define RANK_5_BB       0x000000FF00000000ull
+#define RANK_6_BB       0x0000FF0000000000ull
+#define RANK_7_BB       0x00FF000000000000ull
+#define RANK_8_BB       0xFF00000000000000ull
 
-#define FILE_A_BB       (U64)0x0101010101010101
-#define FILE_B_BB       (U64)0x0202020202020202
-#define FILE_C_BB       (U64)0x0404040404040404
-#define FILE_D_BB       (U64)0x0808080808080808
-#define FILE_E_BB       (U64)0x1010101010101010
-#define FILE_F_BB       (U64)0x2020202020202020
-#define FILE_G_BB       (U64)0x4040404040404040
-#define FILE_H_BB       (U64)0x8080808080808080
+#define FILE_A_BB       0x0101010101010101ull
+#define FILE_B_BB       0x0202020202020202ull
+#define FILE_C_BB       0x0404040404040404ull
+#define FILE_D_BB       0x0808080808080808ull
+#define FILE_E_BB       0x1010101010101010ull
+#define FILE_F_BB       0x2020202020202020ull
+#define FILE_G_BB       0x4040404040404040ull
+#define FILE_H_BB       0x8080808080808080ull
 
-#define DIAG_A1H8_BB    (U64)0x8040201008040201
-#define DIAG_A8H1_BB    (U64)0x0102040810204080
-#define DIAG_B8H2_BB    (U64)0x0204081020408000
+#define DIAG_A1H8_BB    0x8040201008040201ull
+#define DIAG_A8H1_BB    0x0102040810204080ull
+#define DIAG_B8H2_BB    0x0204081020408000ull
 
 #define REL_SQ(sq,cl)   ( sq ^ (cl * 56) )
 #define RelSqBb(sq,cl)  ( SqBb(REL_SQ(sq,cl) ) )
 
-#define bbWhiteSq       (U64)0x55AA55AA55AA55AA
-#define bbBlackSq       (U64)0xAA55AA55AA55AA55
+#define bbWhiteSq       0x55AA55AA55AA55AAull
+#define bbBlackSq       0xAA55AA55AA55AA55ull
 
 static const U64 bb_rel_rank[2][8] = { { RANK_1_BB, RANK_2_BB, RANK_3_BB, RANK_4_BB, RANK_5_BB, RANK_6_BB, RANK_7_BB, RANK_8_BB },
                                      { RANK_8_BB, RANK_7_BB, RANK_6_BB, RANK_5_BB, RANK_4_BB, RANK_3_BB, RANK_2_BB, RANK_1_BB } };
 
 static const U64 bb_central_file = FILE_C_BB | FILE_D_BB | FILE_E_BB | FILE_F_BB;
 
-#define SIDE_RANDOM     (~((U64)0))
+#define SIDE_RANDOM     (~(0ull))
 
 #define START_POS       "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -"
 
-#define SqBb(x)         ((U64)1 << (x))
+#define SqBb(x)         (1ull << (x))
 
 #define Cl(x)           ((x) & 1)
 #define Tp(x)           ((x) >> 1)
@@ -222,11 +222,11 @@ static int FORCEINLINE FirstOne(U64 x) {
 #endif
 
 #else
-#define FirstOne(x)     bit_table[(((x) & (~(x) + 1)) * (U64)0x0218A392CD3D5DBF) >> 58] // first "1" in a bitboard
+#define FirstOne(x)     bit_table[(((x) & (~(x) + 1)) * 0x0218A392CD3D5DBFull) >> 58] // first "1" in a bitboard
 #endif
 
-#define bbNotA          (U64)0xfefefefefefefefe // ~FILE_A_BB
-#define bbNotH          (U64)0x7f7f7f7f7f7f7f7f // ~FILE_H_BB
+#define bbNotA          0xfefefefefefefefeull // ~FILE_A_BB
+#define bbNotH          0x7f7f7f7f7f7f7f7full // ~FILE_H_BB
 
 #define ShiftNorth(x)   (x<<8)
 #define ShiftSouth(x)   (x>>8)
@@ -319,7 +319,7 @@ public:
   U64 pawn_key;
   U64 rep_list[256];
 
-  U64 Pawns(int sd) const { 
+  U64 Pawns(int sd) const {
     return (cl_bb[sd] & tp_bb[P]);
   }
 
@@ -621,7 +621,7 @@ public:
   void UpdateHistory(POS *p, int last_move, int move, int depth, int ply);
   void DecreaseHistory(POS *p, int move, int depth);
   void TrimHist(void);
-  
+
   void Bench(int depth);
   void Think(POS *p, int *pv);
   void Iterate(POS *p, int *pv);

@@ -68,7 +68,7 @@ const U64 magicmoves_r_magics[64]=
   C64(0x0001000204080011), C64(0x0001000204000801), C64(0x0001000082000401), C64(0x0001FFFAABFAD1A2)
 };
 const U64 magicmoves_r_mask[64]=
-{  
+{
   C64(0x000101010101017E), C64(0x000202020202027C), C64(0x000404040404047A), C64(0x0008080808080876),
   C64(0x001010101010106E), C64(0x002020202020205E), C64(0x004040404040403E), C64(0x008080808080807E),
   C64(0x0001010101017E00), C64(0x0002020202027C00), C64(0x0004040404047A00), C64(0x0008080808087600),
@@ -186,7 +186,7 @@ U64 initmagicmoves_occ(const int* squares, const int numSquares, const U64 linoc
   int i;
   U64 ret=0;
   for(i=0;i<numSquares;i++)
-    if(linocc&(((U64)(1))<<i)) ret|=(((U64)(1))<<squares[i]);
+    if(linocc&(1ull<<i)) ret|=(1ull<<squares[i]);
   return ret;
 }
 
@@ -194,28 +194,28 @@ U64 initmagicmoves_Rmoves(const int square, const U64 occ)
 {
   U64 ret=0;
   U64 bit;
-  U64 rowbits=(((U64)0xFF)<<(8*(square/8)));
-  
-  bit=(((U64)(1))<<square);
+  U64 rowbits=(0xFFull<<(8*(square/8)));
+
+  bit=(1ull<<square);
   do
   {
     bit<<=8;
     ret|=bit;
   } while(bit && !(bit&occ));
-  bit=(((U64)(1))<<square);
+  bit=(1ull<<square);
   do
   {
     bit>>=8;
     ret|=bit;
   } while(bit && !(bit&occ));
-  bit=(((U64)(1))<<square);
+  bit=(1ull<<square);
   do
   {
     bit<<=1;
     if(bit&rowbits) ret|=bit;
     else break;
   }while(!(bit&occ));
-  bit=(((U64)(1))<<square);
+  bit=(1ull<<square);
   do
   {
     bit>>=1;
@@ -230,9 +230,9 @@ U64 initmagicmoves_Bmoves(const int square, const U64 occ)
   U64 ret=0;
   U64 bit;
   U64 bit2;
-  U64 rowbits=(((U64)0xFF)<<(8*(square/8)));
-  
-  bit=(((U64)(1))<<square);
+  U64 rowbits=(0xFFull<<(8*(square/8)));
+
+  bit=(1ull<<square);
   bit2=bit;
   do
   {
@@ -241,7 +241,7 @@ U64 initmagicmoves_Bmoves(const int square, const U64 occ)
     if(bit2&rowbits) ret|=bit;
     else break;
   } while(bit && !(bit&occ));
-  bit=(((U64)(1))<<square);
+  bit=(1ull<<square);
   bit2=bit;
   do
   {
@@ -250,7 +250,7 @@ U64 initmagicmoves_Bmoves(const int square, const U64 occ)
     if(bit2&rowbits) ret|=bit;
     else break;
   } while(bit && !(bit&occ));
-  bit=(((U64)(1))<<square);
+  bit=(1ull<<square);
   bit2=bit;
   do
   {
@@ -259,7 +259,7 @@ U64 initmagicmoves_Bmoves(const int square, const U64 occ)
     if(bit2&rowbits) ret|=bit;
     else break;
   }while(bit && !(bit&occ));
-  bit=(((U64)(1))<<square);
+  bit=(1ull<<square);
   bit2=bit;
   do
   {
@@ -343,7 +343,7 @@ void initmagicmoves(void)
       squares[numsquares++]=initmagicmoves_bitpos64_database[(bit*C64(0x07EDD5E59A4E28C2))>>58];
       temp^=bit;
     }
-    for(temp=0;temp<(((U64)(1))<<numsquares);temp++)
+    for(temp=0;temp<(1ull<<numsquares);temp++)
     {
       U64 tempocc=initmagicmoves_occ(squares,numsquares,temp);
       BmagicNOMASK2(i,tempocc)=initmagicmoves_Bmoves(i,tempocc);
@@ -360,7 +360,7 @@ void initmagicmoves(void)
       squares[numsquares++]=initmagicmoves_bitpos64_database[(bit*C64(0x07EDD5E59A4E28C2))>>58];
       temp^=bit;
     }
-    for(temp=0;temp<(((U64)(1))<<numsquares);temp++)
+    for(temp=0;temp<(1ull<<numsquares);temp++)
     {
       U64 tempocc=initmagicmoves_occ(squares,numsquares,temp);
       RmagicNOMASK2(i,tempocc)=initmagicmoves_Rmoves(i,tempocc);

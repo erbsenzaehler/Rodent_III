@@ -464,10 +464,10 @@ void sBook::ReadEntry(polyglot_move * entry, int n) {
 
   fseek(bookFile, n * 16, SEEK_SET);
   entry->key = ReadInteger(8);
-  entry->move = (int)ReadInteger(2);
-  entry->weight = (int)ReadInteger(2);
-  entry->n = (int)ReadInteger(2);
-  entry->learn = (int)ReadInteger(2);
+  entry->move = int(ReadInteger(2));
+  entry->weight = int(ReadInteger(2));
+  entry->n = int(ReadInteger(2));
+  entry->learn = int(ReadInteger(2));
 }
 
 U64 sBook::ReadInteger(int size) {

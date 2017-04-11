@@ -184,10 +184,10 @@ int *GenerateQuiet(POS *p, int *list) {
 
   sd = p->side;
   if (sd == WC) {
-    if ((p->c_flags & W_KS) && !(OccBb(p) & (U64)0x0000000000000060))
+    if ((p->c_flags & W_KS) && !(OccBb(p) & 0x0000000000000060ull))
       if (!Attacked(p, E1, BC) && !Attacked(p, F1, BC))
         *list++ = (CASTLE << 12) | (G1 << 6) | E1;
-    if ((p->c_flags & W_QS) && !(OccBb(p) & (U64)0x000000000000000E))
+    if ((p->c_flags & W_QS) && !(OccBb(p) & 0x000000000000000Eull))
       if (!Attacked(p, E1, BC) && !Attacked(p, D1, BC))
         *list++ = (CASTLE << 12) | (C1 << 6) | E1;
 
@@ -203,10 +203,10 @@ int *GenerateQuiet(POS *p, int *list) {
       *list++ = (to << 6) | (to - 8);
     }
   } else {
-    if ((p->c_flags & B_KS) && !(OccBb(p) & (U64)0x6000000000000000))
+    if ((p->c_flags & B_KS) && !(OccBb(p) & 0x6000000000000000ull))
       if (!Attacked(p, E8, WC) && !Attacked(p, F8, WC))
         *list++ = (CASTLE << 12) | (G8 << 6) | E8;
-    if ((p->c_flags & B_QS) && !(OccBb(p) & (U64)0x0E00000000000000))
+    if ((p->c_flags & B_QS) && !(OccBb(p) & 0x0E00000000000000ull))
       if (!Attacked(p, E8, WC) && !Attacked(p, D8, WC))
         *list++ = (CASTLE << 12) | (C8 << 6) | E8;
 
@@ -339,7 +339,7 @@ int *GenerateSpecial(POS *p, int *list) {
 
 	U64 bb_checkers = p->Queens(sd) | p->Rooks(sd) | p->Bishops(sd);
 	int knight_discovers = CanDiscoverCheck(p, bb_checkers, op, from);
-   
+
 	bb_moves = BB.KnightAttacks(from) & UnoccBb(p);
 	if (!knight_discovers) bb_moves = bb_moves & n_check;
     while (bb_moves) {
@@ -371,11 +371,11 @@ int *GenerateSpecial(POS *p, int *list) {
   bb_pieces = p->Rooks(sd);
   while (bb_pieces) {
     from = BB.PopFirstBit(&bb_pieces);
-	
+
 	// are diagonal discovered checks possible?
 
 	int rook_discovers = CanDiscoverCheck(p, p->DiagMovers(sd), op, from);
-    
+
     bb_moves = BB.RookAttacks(OccBb(p), from) & UnoccBb(p);
 	if (!rook_discovers) bb_moves = bb_moves & r_check;
     while (bb_moves) {
@@ -411,7 +411,7 @@ int *GenerateSpecial(POS *p, int *list) {
 }
 
 int CanDiscoverCheck(POS *p, U64 bb_checkers, int op, int from) {
- 
+
   while (bb_checkers) {
     int checker = BB.PopFirstBit(&bb_checkers);
     U64 bb_ray = BB.bbBetween[checker][p->king_sq[op]];

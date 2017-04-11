@@ -60,7 +60,7 @@ void InitSearch(void) {
   for (int dp = 0; dp < MAX_PLY; dp++)
     for (int mv = 0; mv < MAX_MOVES; mv++) {
 
-      double r = log((double)dp) * log((double)Min(mv, 63)) / 2;
+      double r = log(double(dp)) * log(double(Min(mv, 63))) / 2.0;
       lmr_size[0][dp][mv] = r;             // zero window node
       lmr_size[1][dp][mv] = Max(r - 1, 0); // principal variation node
 
@@ -451,7 +451,7 @@ int cEngine::Search(POS *p, int ply, int alpha, int beta, int depth, int was_nul
     && mv_type == MV_NORMAL
     && mv_hist_score < Par.hist_limit
     && MoveType(move) != CASTLE) {
-      reduction = (int)lmr_size[is_pv][depth][mv_tried];
+      reduction = int(lmr_size[is_pv][depth][mv_tried]);
 
       // increase reduction on bad history score
 
@@ -598,7 +598,7 @@ void cEngine::DisplayPv(int score, int *pv) {
   printf("info depth %d time %d nodes %I64d nps %I64d score %s %d pv %s\n",
       root_depth, elapsed, Glob.nodes, nps, type, score, pv_str);
 #else
-  printf("info depth %d time %d nodes %lld nps %lld score %s %d pv %s\n",
+  printf("info depth %d time %d nodes %lu nps %lu score %s %d pv %s\n",
       root_depth, elapsed, Glob.nodes, nps, type, score, pv_str);
 #endif
 }
@@ -637,7 +637,7 @@ void cEngine::Slowdown() {
   if (Par.nps_limit && root_depth > 1) {
     int time = GetMS() - start_time + 1;
     int nps = GetNps(time);
-    while ((int)nps > Par.nps_limit) {
+    while (int(nps) > Par.nps_limit) {
       WasteTime(10);
       time = GetMS() - start_time + 1;
       nps = GetNps(time);

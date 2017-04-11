@@ -41,7 +41,7 @@ void cBitBoard::Init() {
     p_attacks[WC][sq] = ShiftNE(SqBb(sq)) | ShiftNW(SqBb(sq));
     p_attacks[BC][sq] = ShiftSE(SqBb(sq)) | ShiftSW(SqBb(sq));
   }
- 
+
   // init knight attacks
 
   for (int sq = 0; sq < 64; sq++) {
@@ -111,10 +111,10 @@ int cBitBoard::PopCnt(U64 bb) {
 
 int cBitBoard::PopCnt(U64 bb) { // general purpose population count
 
-  U64 k1 = (U64)0x5555555555555555;
-  U64 k2 = (U64)0x3333333333333333;
-  U64 k3 = (U64)0x0F0F0F0F0F0F0F0F;
-  U64 k4 = (U64)0x0101010101010101;
+  U64 k1 = 0x5555555555555555ull;
+  U64 k2 = 0x3333333333333333ull;
+  U64 k3 = 0x0F0F0F0F0F0F0F0Full;
+  U64 k4 = 0x0101010101010101ull;
 
   bb -= (bb >> 1) & k1;
   bb = (bb & k2) + ((bb >> 2) & k2);

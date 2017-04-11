@@ -37,11 +37,11 @@ int Legal(POS *p, int move) {
       if (fsq != E1)
         return 0;
       if (tsq > fsq) {
-        if ((p->c_flags & 1) && !(OccBb(p) & (U64)0x0000000000000060))
+        if ((p->c_flags & 1) && !(OccBb(p) & 0x0000000000000060ull))
           if (!Attacked(p, E1, BC) && !Attacked(p, F1, BC))
             return 1;
       } else {
-        if ((p->c_flags & 2) && !(OccBb(p) & (U64)0x000000000000000E))
+        if ((p->c_flags & 2) && !(OccBb(p) & 0x000000000000000Eull))
           if (!Attacked(p, E1, BC) && !Attacked(p, D1, BC))
             return 1;
       }
@@ -49,11 +49,11 @@ int Legal(POS *p, int move) {
       if (fsq != E8)
         return 0;
       if (tsq > fsq) {
-        if ((p->c_flags & 4) && !(OccBb(p) & (U64)0x6000000000000000))
+        if ((p->c_flags & 4) && !(OccBb(p) & 0x6000000000000000ull))
           if (!Attacked(p, E8, WC) && !Attacked(p, F8, WC))
             return 1;
       } else {
-        if ((p->c_flags & 8) && !(OccBb(p) & (U64)0x0E00000000000000))
+        if ((p->c_flags & 8) && !(OccBb(p) & 0x0E00000000000000ull))
           if (!Attacked(p, E8, WC) && !Attacked(p, D8, WC))
             return 1;
       }

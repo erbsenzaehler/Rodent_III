@@ -274,7 +274,7 @@ void cParam::InitTables(void) {
   // Init king attack table
 
   for (int t = 0, i = 1; i < 511; ++i) {
-    t = (int)Min(1280.0, Min((0.027 * i * i), t + 8.0));
+    t = int(Min(1280.0, Min((0.027 * i * i), t + 8.0)));
     danger[i] = (t * 100) / 256; // rescale to centipawns
   }
 }
@@ -291,8 +291,8 @@ void cParam::SetSpeed(int elo) {
 }
 
 int cParam::EloToSpeed(int elo) {
+  int result = 300 + int(pow(double(2), (elo - 799) / 85));
 
-  int result = 300 + (int) pow((double)2, (elo - 799) / 85);
   result *= 0.23;
 
   if (elo < 1400) result *= 0.95;
