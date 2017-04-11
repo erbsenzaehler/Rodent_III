@@ -15,11 +15,12 @@ You should have received a copy of the GNU General Public License along with thi
 If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "rodent.h"
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+
 #include "book.h"
+#include "rodent.h"
 
 void PrintUciOptions(void) {
 

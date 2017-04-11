@@ -15,10 +15,10 @@ You should have received a copy of the GNU General Public License along with thi
 If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "rodent.h"
+#include <cmath>
+
 #include "eval.h"
-#include <stdio.h>
-#include <math.h>
+#include "rodent.h"
 
 void cParam::DefaultWeights(void) {
  

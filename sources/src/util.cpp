@@ -15,8 +15,8 @@ You should have received a copy of the GNU General Public License along with thi
 If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #if defined(_WIN32) || defined(_WIN64)
 #  include <windows.h>
 #else

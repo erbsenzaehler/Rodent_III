@@ -15,9 +15,10 @@ You should have received a copy of the GNU General Public License along with thi
 If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdlib.h>
+#include <cstdlib>
+
 #include "rodent.h"
-#include <string.h>
+
 
 void AllocTrans(int mbsize) {
 

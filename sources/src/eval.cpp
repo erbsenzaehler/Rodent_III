@@ -15,10 +15,9 @@ You should have received a copy of the GNU General Public License along with thi
 If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "rodent.h"
 #include "eval.h"
-#include <stdio.h>
-#include <math.h> // round
+
+#include <cmath> // round
 
 void cEngine::ClearAll(void) {
 

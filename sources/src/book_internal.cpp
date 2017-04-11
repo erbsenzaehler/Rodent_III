@@ -36,12 +36,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+
 #include "rodent.h"
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include "book.h"
-#include <math.h>
 
 void sInternalBook::ReadInternal(POS *p) {
 #ifndef USEGEN

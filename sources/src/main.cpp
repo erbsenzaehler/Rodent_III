@@ -15,8 +15,8 @@ You should have received a copy of the GNU General Public License along with thi
 If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "rodent.h"
 #include "book.h"
+#include "rodent.h"
 
 cGlobals Glob;
 cEngine Engine1;

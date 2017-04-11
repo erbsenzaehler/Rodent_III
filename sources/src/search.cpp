@@ -16,9 +16,10 @@ If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <cinttypes>
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+
 #include "rodent.h"
 
 int razor_margin[5] = { 0, 300, 360, 420, 480 };

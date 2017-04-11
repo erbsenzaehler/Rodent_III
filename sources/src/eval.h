@@ -17,6 +17,8 @@ If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "rodent.h"
+
 #define PMG2 12
 #define PMG3 12
 #define PMG4 30

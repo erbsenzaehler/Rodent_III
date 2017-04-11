@@ -17,6 +17,11 @@ If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <cstdio>
+
+#include "rodent.h"
+
+
 struct polyglot_move {
   U64 key;
   int move;
@@ -24,8 +29,6 @@ struct polyglot_move {
   int n;
   int learn;
 };
-
-#include<stdio.h>
 
 struct sBook {
 private:
