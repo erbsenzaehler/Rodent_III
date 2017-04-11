@@ -51,20 +51,10 @@
 #ifndef _magicmovesh
 #define _magicmovesh
 
-/*********MODIFY THE FOLLOWING IF NECESSARY********/
-//the default configuration is the best
+#include "rodent.h"
+
 
 #define USE_INLINING /*the MMINLINE keyword is assumed to be available*/
-
-#ifndef __64_BIT_INTEGER_DEFINED__
-  #define __64_BIT_INTEGER_DEFINED__
-  #if defined(_MSC_VER) && _MSC_VER<1300
-    typedef unsigned __int64 U64; //For the old microsoft compilers
-  #else
-    typedef unsigned long long  U64; //Supported by MSC 13.00+ and C99
-  #endif //defined(_MSC_VER) && _MSC_VER<1300
-#endif //__64_BIT_INTEGER_DEFINED__
-/***********MODIFY THE ABOVE IF NECESSARY**********/
 
 /*Defining the inlining keyword*/
 #ifdef USE_INLINING
