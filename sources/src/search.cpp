@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License along with thi
 If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <cinttypes>
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -594,13 +595,8 @@ void cEngine::DisplayPv(int score, int *pv) {
 
   PvToStr(pv, pv_str);
 
-#if defined _WIN32 || defined _WIN64 
-  printf("info depth %d time %d nodes %I64d nps %I64d score %s %d pv %s\n",
+  printf("info depth %d time %d nodes %" PRIu64 " nps %" PRIu64 " score %s %d pv %s\n",
       root_depth, elapsed, Glob.nodes, nps, type, score, pv_str);
-#else
-  printf("info depth %d time %d nodes %lu nps %lu score %s %d pv %s\n",
-      root_depth, elapsed, Glob.nodes, nps, type, score, pv_str);
-#endif
 }
 
 void CheckTimeout(void) {

@@ -23,6 +23,10 @@ If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <cstdint>
+
+typedef uint64_t U64;
+
 // define how Rodent is to be compiled
 
 #define USE_MAGIC
@@ -69,14 +73,6 @@ enum eSquare {
 #define MATE            32000
 #define MAX_EVAL        29999
 #define MAX_HIST        (1 << 15)
-
-#if __cplusplus >= 201103L
-    #include <cstdint>
-    #include <cinttypes>
-    typedef uint64_t U64;
-#else
-    typedef unsigned long long U64;
-#endif
 
 #define RANK_1_BB       0x00000000000000FFull
 #define RANK_2_BB       0x000000000000FF00ull
