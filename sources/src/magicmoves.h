@@ -48,8 +48,6 @@
  */
 
 #pragma once
-#ifndef _magicmovesh
-#define _magicmovesh
 
 #include "rodent.h"
 
@@ -121,5 +119,3 @@ U64 initmagicmoves_Bmoves(const int, const U64);
 #endif //USE_INLINING
 
 void initmagicmoves(void);
-
-#endif //_magicmoveshvesh
