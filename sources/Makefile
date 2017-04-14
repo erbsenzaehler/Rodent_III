@@ -15,8 +15,8 @@ CFLAGS = -g -w -Wfatal-errors -pipe -DNDEBUG -O3 -fno-rtti -finline-functions -f
 C1FLAGS = -g -w -Wfatal-errors -pipe -DWRITEDEBUGFILE -DBOOKPATH=$(DATADIR)
 
 # define the link options
-LDFLAGS = -s -lm
-LD1FLAGS = -lm
+LDFLAGS = -s -lm -lpthread
+LD1FLAGS = -lm -lpthread
 
 # define outpout name and settings file
 EXENAME= rodentIII
