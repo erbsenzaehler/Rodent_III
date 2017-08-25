@@ -51,6 +51,10 @@ CONFIGFILE = basic.ini
 
 default: build
 
+version:
+	@rm -f src/version.h
+	@echo -e "#pragma once\n\nconst char * version = \"$(shell git rev-list --count HEAD)\";" > src/version.h
+
 build:
 	@echo "Type make help for additional options"
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(EXENAME) src/*.cpp
@@ -150,6 +154,10 @@ remove:
 	rm -rf $(DATADIR)
 
 help:
+	@echo ""
+	@echo "To update the version number when within the git repository type:"
+	@echo ""
+	@echo "make version"
 	@echo ""
 	@echo "To compile RodentIII type:"
 	@echo ""

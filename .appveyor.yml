@@ -4,10 +4,9 @@ environment:
 image: Visual Studio 2017
 
 clone_folder: c:\rodent_iii_src
-shallow_clone: true
 
 install:
-  - if not exist c:\tools\msys64 cinst msys2
+  - if not exist c:\tools\msys64 cinst msys2 git
 
 before_build:
   - set PATH=c:\tools\msys64\usr\bin;%PATH%

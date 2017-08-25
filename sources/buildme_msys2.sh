@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo -e "#pragma once\n\nconst char * version = \"$(git rev-list --count HEAD)\";" > src/version.h
+
 CFG="-DUSEGEN -DUSE_THREADS"
 CC=g++
 EXENAME=rodentiii

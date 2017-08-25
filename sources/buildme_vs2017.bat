@@ -3,12 +3,26 @@
 setlocal
 
 set vswhere="%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+set git="%Program Files%\Git\bin\git.exe"
+
 
 for /f "usebackq tokens=*" %%i in (`%vswhere% -latest -products * -requires Microsoft.Component.MSBuild -property installationPath`) do (
   set InstallDir=%%i
 )
 
 set EXENAME=RodentIII
+
+git rev-list --count HEAD > tmp.txt
+set /p VERSION=<tmp.txt
+del tmp.txt
+del src\version.h
+echo #pragma once >> src\version.h 
+echo: >> src\version.h
+echo const char * version = "%VERSION%"; >> src\version.h
+echo src\version.h
+
+
+
 set PROF=%1
 
 call "%InstallDir%\Common7\Tools\VsDevCmd.bat" -arch=x86

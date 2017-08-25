@@ -17,6 +17,7 @@ If not, see <http://www.gnu.org/licenses/>.
 
 #include "rodent.h"
 #include "book.h"
+#include "version.h"
 #include <cstdlib>
 
 cGlobals Glob;
@@ -42,7 +43,7 @@ sBook MainBook;
 
 void PrintVersion()
 {
-    printf("id name Rodent III 0.228"
+    printf("id name Rodent III %s"
 
 #if !(defined(_WIN64) || defined(__x86_64__))
             " 32-bit"
@@ -71,7 +72,7 @@ void PrintVersion()
             "/SSSE3"
 #endif
 
-                        "\n");
+                        "\n", version);
 }
 
 int main() {
